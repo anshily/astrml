@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+/*@import '~highlight.js/styles/github.css';*/
+/*
+https://github.com/highlightjs/highlight.js/tree/master/src/styles
+
+
+solarized-dark.css
+github.css
+xcode.css
+*/
+@import '~highlight.js/styles/solarized-dark.css';
