@@ -7,6 +7,12 @@
 <app-flow [content]="flowRanderText"></app-flow>
 <app-terminal *ngIf="showTerminal" class="terminal-wrapper" [content]="terminalRanderText"></app-terminal>
 <div class="testshow">
-  <app-markdown></app-markdown>
+  <!--<app-markdown [markdown]="markdownRanderText"></app-markdown>-->
+  <markdown [src]="'assets/introduce.md'"></markdown>
+
+
+
+  <markdown [data]="markdownRanderText"></markdown>
+
   <button (click)="emit()">click</button>
 </div>

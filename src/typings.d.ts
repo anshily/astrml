@@ -12,5 +12,6 @@ declare var ROOT_URL: any;
 declare var token: any;
 declare var IMG_URL: any;
 declare var AMap: any;
-// declare var Prism: any;
+declare var Prism: any;
+declare var marked: any;
 

@@ -14,3 +14,9 @@ color-brewer.css
   margin: 0;
   padding: 0;
 }
+.blockquote {
+  word-wrap: break-word;
+  padding: 0 15px;
+  /*color: #666;*/
+  border-left: 4px solid #ddd;
+}

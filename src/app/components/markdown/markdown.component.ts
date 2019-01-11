@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-markdown',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./markdown.component.css']
 })
 export class MarkdownComponent implements OnInit {
+  @Input() markdown
 
   constructor() { }
 

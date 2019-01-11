@@ -13,6 +13,7 @@
   border-bottom-right-radius: 5px;
   color: white;
   font-size: 12px;
+  overflow: auto;
   width: 500px;
   height: 380px;
   background: rgba(0,0,0,0.8);

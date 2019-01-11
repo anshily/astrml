@@ -6,23 +6,26 @@ import {Observable} from 'rxjs';
 })
 export class TypewriterService {
 
-  private context: string;
-  public typing(str: string, interval: number= 50): Observable<string> {
-    this.context = '';
+  public typing(str: string, next: string, interval: number= 20): Observable<TypeResp> {
     return Observable.create((observer) => {
       let i = 0;
       const idx = setInterval(() => {
-        this.context += str[i];
-        observer.next(str[i]);
+        observer.next({str: str[i], event: ''});
         // observer.next(this.context);
         if (i < str.length - 1) {
           i++;
         } else {
           clearInterval(idx);
+          observer.next({str: '', event: next})
           observer.complete();
         }
       }, interval);
     });
   }
   constructor() { }
+}
+
+export class TypeResp {
+  public str: string;
+  public event: string;
 }

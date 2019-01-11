@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     next: (res) => {
       switch (res) {
         case 'mark':
-          this.markdownObserverable.next();
+          this.markdownObserverable.next(this.markText[0]);
           break;
         case 'vim':
           this.vimObserverable.next(this.styleText[1]);
@@ -42,18 +42,21 @@ export class AppComponent implements OnInit {
   markdownRanderText = '';
 
   styleList = [];
+  markText = [`# hang\`code\`
+> test
+test`];
   terminalText = [`cd ~
 mkdir anshi && cd anshi && vim style.css
 `];
   Text = [
-    `/* 某日朋友发来一份很酷的动画简历 https://www.sitexa.org/anires/public/
-* 立时便来了兴致，找到作者仓库 https://github.com/sitexa/anires
-* 作者用 Vue 实现
-* 鉴于最近工作中使用 Angular 便用 Angular 实现了一份
-* 鸣谢：http://strml.net/
-* 先打开一个终端
-*/`,
-    ``,
+    `某日朋友发来一份很酷的动画简历 https://www.sitexa.org/anires/public/
+立时便来了兴致，找到作者仓库 https://github.com/sitexa/anires
+作者用 Vue 实现
+鉴于最近工作中使用 Angular 便用 Angular 实现了一份
+鸣谢：http://strml.net/
+先打开一个终端
+`,
+    `制作一个 Markdown 组件`,
     ``
   ];
 
@@ -72,11 +75,11 @@ mkdir anshi && cd anshi && vim style.css
 .style-wrapper{
   display: block;
   overflow-x: auto;
-  padding: 10rem;
+  padding: 2rem;
     z-index: 1;
   // background: #002b36;
   // background: hsl(20,40%,90%) fixed;
-  color: #839496;
+  // color: #839496;
 }
 
 /* 代码高亮 */
@@ -123,15 +126,13 @@ mkdir anshi && cd anshi && vim style.css
     this.mObserverable.next('hang');
   }
   flowWrite() {
-    this.typewriter.typing(this.Text[0], 20).subscribe(res => {
-      this.flowRanderText += res;
+    this.typewriter.typing(this.Text[0], 'flow').subscribe(res => {
+      this.flowRanderText += res.str;
     }, () => {}, () => {
       this.showTerminal = true;
       setTimeout(() => {
-        this.typewriter.typing(this.terminalText[0], 20).subscribe(res => {
-          this.terminalRanderText += res;
-          if (res === '') {
-          }
+        this.typewriter.typing(this.terminalText[0], 'terminal').subscribe(res => {
+          this.terminalRanderText += res.str;
         }, () => {}, () => {
           this.observer.next('vim');
         });
@@ -139,25 +140,49 @@ mkdir anshi && cd anshi && vim style.css
     });
   }
   vimWrite(str) {
-    this.typewriter.typing(str, 20).subscribe(res => {
-      this.terminalRanderText += res;
-      this.styleRanderText += res;
+    this.typewriter.typing(str, 'mark').subscribe(res => {
+      if (res.event === '') {
+        this.terminalRanderText += res.str;
+        this.styleRanderText += res.str;
+      } else {
+        this.terminalRanderText += ':wq';
+        this.observer.next(res.event);
+      }
     }, res => {}, () => {
       // this.styleList.push(str)
-      this.showTerminal = false;
+      // this.showTerminal = false;
     });
   }
   styleWrite(str) {
-    this.typewriter.typing(str).subscribe(res => {
+    this.typewriter.typing(str, 'flow').subscribe(res => {
     }, res => {}, () => {});
   }
   terminalWrtie(str) {
-    this.typewriter.typing(str).subscribe(res => {
-      this.terminalRanderText = res;
+    this.typewriter.typing(str, 'terminal').subscribe(res => {
+      this.terminalRanderText = res.str;
     }, res => {}, () => {});
   }
   markdownWrite(str) {
-    this.typewriter.typing(str).subscribe(res => {
+    this.typewriter.typing(str, 'mark').subscribe(res => {
+      if (res.event === '') {
+        this.markdownRanderText += res.str;
+      } else {
+        // this.observer.next(res.event);
+      }
     }, res => {}, () => {});
   }
+  // doWrite(deal) {
+  //   this.typewriter.typing(deal.str, deal.next).subscribe(res => {
+  //     if (res.event === '') {
+  //       this.terminalRanderText += res.str;
+  //       this.styleRanderText += res.str;
+  //     } else {
+  //       this.terminalRanderText += ':wq';
+  //       // this.observer.next(res.event);
+  //     }
+  //   }, res => {}, () => {
+  //     // this.styleList.push(str)
+  //     // this.showTerminal = false;
+  //   });
+  // }
 }
