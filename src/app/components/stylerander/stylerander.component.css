@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/*.style-wrapper-inner:before{*/
+  /*content: '';*/
+  /*background: #002b36;*/
+  /*!*background: hsl(20,40%,90%) fixed;*!*/
+  /*z-index: -1;*/
+/*}*/
+/*.style-wrapper-inner{*/
+  /*background: #002b36;*/
+  /*!*background: hsla(0,0%,100%,.6);*!*/
+/*}*/

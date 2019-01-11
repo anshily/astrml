@@ -1,0 +1,21 @@
+* {
+  /*margin: 0;*/
+  /*padding: 0;*/
+  /*color: #839496;*/
+  /*background: #002b36*/
+}
+
+@keyframes showTerminal
+{
+  0% {position: fixed;width: 0;height: 0;overflow: hidden;top: 0;left: 0;perspective: 1000px;}
+  20% {position: fixed;overflow: hidden;top: 10px;left: 20px;perspective: 1000px;transform: scaleX(0.01) scaleY(0.01)}
+  40% {position: fixed;top: 20px;left: 40px;perspective: 1000px;transform: scaleX(0.05) scaleY(0.05)}
+  60% {position: fixed;top: 30px;left: 60px;perspective: 1000px;transform: scaleX(0.1) scaleY(0.1)}
+  80% {position: fixed;top: 40px;left: 80px;perspective: 1000px;transform: scaleX(1) scaleY(1)}
+  100% {position: fixed;top: 50px;left: 100px;perspective: 1000px;}
+}
+.terminal-wrapper{
+  animation: showTerminal 1s;
+  animation-fill-mode: forwards;
+  /*animation-timing-function: linear;*/
+}

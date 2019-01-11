@@ -1,0 +1,12 @@
+<!--<textarea [(ngModel)]="styleText"></textarea>-->
+<!--<button (click)="typing()">emit</button>-->
+<div *ngFor="let style of styleList">
+</div>
+<app-stylerander [styleText]="styleRanderText"></app-stylerander>
+
+<app-flow [content]="flowRanderText"></app-flow>
+<app-terminal *ngIf="showTerminal" class="terminal-wrapper" [content]="terminalRanderText"></app-terminal>
+<div class="testshow">
+  <app-markdown></app-markdown>
+  <button (click)="emit()">click</button>
+</div>

@@ -13,15 +13,11 @@ export class StyleranderComponent implements OnInit {
 
   ngOnInit() {
   }
-  highLight() {
-    console.log('highLight');
-    return  Prism.highlight(this.styleText, Prism.languages.css);
-  }
+  // highLight() {
+  //   console.log('highLight');
+  //   return  Prism.highlight(this.styleText, Prism.languages.css);
+  // }
   styleCode() {
     return `<style>${this.styleText}</style>`;
   }
-  onHighlight(e) {
-    console.log(e);
-  }
-
 }
