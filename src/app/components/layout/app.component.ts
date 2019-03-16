@@ -42,10 +42,11 @@ export class AppComponent implements OnInit {
   markdownRanderText = '';
 
   styleList = [];
-  markText = [`# hang\`code\`
+  markText = [`# hang
 > test
-test`];
-  terminalText = [`cd ~
+test\`code\``];
+  terminalText = [`# 修改样式文件
+cd ~
 mkdir anshi && cd anshi && vim style.css
 `];
   Text = [
@@ -126,6 +127,7 @@ mkdir anshi && cd anshi && vim style.css
     this.mObserverable.next('hang');
   }
   flowWrite() {
+    // 简介 渲染流程文本
     this.typewriter.typing(this.Text[0], 'flow').subscribe(res => {
       this.flowRanderText += res.str;
     }, () => {}, () => {
@@ -134,12 +136,15 @@ mkdir anshi && cd anshi && vim style.css
         this.typewriter.typing(this.terminalText[0], 'terminal').subscribe(res => {
           this.terminalRanderText += res.str;
         }, () => {}, () => {
-          this.observer.next('vim');
+          setTimeout(() => {
+            this.observer.next('vim');
+          }, 500);
         });
       }, 1200);
     });
   }
   vimWrite(str) {
+    this.terminalRanderText = '';
     this.typewriter.typing(str, 'mark').subscribe(res => {
       if (res.event === '') {
         this.terminalRanderText += res.str;
